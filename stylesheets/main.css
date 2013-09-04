@@ -83,3 +83,12 @@ dl,dt,dd {
 	width: 570px;
 	padding: 10px 30px;
 }
+.infotable {
+	width: 500px;
+	padding: 10px;
+	line-height: 30px;
+	font-size: 1.6em;
+}
+.infotable th {
+	line-height: 0px;
+}
