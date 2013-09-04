@@ -3,7 +3,7 @@
 -name
 [Department]
 -id
--cid
+-Cid
 -name
 [Employee]
 -id
@@ -39,6 +39,7 @@
 -name
 [Products]
 -id
+-type
 -PSN
 -picture
 -name
