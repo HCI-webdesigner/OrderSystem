@@ -35,7 +35,7 @@
 -name
 [ProductType_lv2]
 -id
--Pid
+-PTid
 -name
 [Products]
 -id
@@ -55,3 +55,7 @@
 [Order_rel_Employee]
 -Eid
 -orderid
+[Products_rel_Company]
+-Pid
+-Cid
+-price
