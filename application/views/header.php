@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>Document</title>
+	<title><?php echo $pagename . ' - ' . SITENAME ?></title>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/stylesheets/global.css');?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/stylesheets/main.css');?>">
 	<script type="text/javascript" src="<?php echo base_url('public/javascripts/jquery-1.7.2.min.js');?>"></script>
