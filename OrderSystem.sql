@@ -2,10 +2,10 @@
 -- version 3.5.8.1deb1
 -- http://www.phpmyadmin.net
 --
--- 主机: localhost
--- 生成日期: 2013 年 09 月 04 日 21:07
--- 服务器版本: 5.5.32-0ubuntu0.13.04.1
--- PHP 版本: 5.4.9-4ubuntu2.2
+-- Host: localhost
+-- Generation Time: Sep 05, 2013 at 10:09 PM
+-- Server version: 5.5.31-0ubuntu0.13.04.1
+-- PHP Version: 5.4.9-4ubuntu2.2
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,15 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- 数据库: `OrderSystem`
+-- Database: `OrderSystem`
 --
-CREATE DATABASE `OrderSystem` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `OrderSystem`;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `address`
+-- Table structure for table `address`
 --
 
 CREATE TABLE IF NOT EXISTS `address` (
@@ -40,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `address` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `address_rel_employee`
+-- Table structure for table `address_rel_employee`
 --
 
 CREATE TABLE IF NOT EXISTS `address_rel_employee` (
@@ -51,19 +49,26 @@ CREATE TABLE IF NOT EXISTS `address_rel_employee` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `company`
+-- Table structure for table `company`
 --
 
 CREATE TABLE IF NOT EXISTS `company` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `company`
+--
+
+INSERT INTO `company` (`id`, `name`) VALUES
+(1, 'HCI人机交互中心');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `department`
+-- Table structure for table `department`
 --
 
 CREATE TABLE IF NOT EXISTS `department` (
@@ -71,12 +76,22 @@ CREATE TABLE IF NOT EXISTS `department` (
   `Cid` int(10) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `department`
+--
+
+INSERT INTO `department` (`id`, `Cid`, `name`) VALUES
+(1, 1, '后台部'),
+(2, 1, '前端部'),
+(3, 1, '移动开发部'),
+(4, 1, '系统运维部');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `employee`
+-- Table structure for table `employee`
 --
 
 CREATE TABLE IF NOT EXISTS `employee` (
@@ -89,12 +104,20 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `telephone` varchar(255) NOT NULL,
   `fax` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`id`, `Uid`, `Did`, `name`, `role`, `email`, `telephone`, `fax`) VALUES
+(1, 1, 1, '胡华泉', '普通成员', '914099943@qq.com', '18826495176', 'hehe'),
+(2, 2, 1, '钟煜', '后台部部长', '517007344@qq.com', '123456', 'hehe');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `order`
+-- Table structure for table `order`
 --
 
 CREATE TABLE IF NOT EXISTS `order` (
@@ -109,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `order` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `order_rel_employee`
+-- Table structure for table `order_rel_employee`
 --
 
 CREATE TABLE IF NOT EXISTS `order_rel_employee` (
@@ -120,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `order_rel_employee` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE IF NOT EXISTS `products` (
@@ -137,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `products` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `products_rel_company`
+-- Table structure for table `products_rel_company`
 --
 
 CREATE TABLE IF NOT EXISTS `products_rel_company` (
@@ -149,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `products_rel_company` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `producttype_lv1`
+-- Table structure for table `producttype_lv1`
 --
 
 CREATE TABLE IF NOT EXISTS `producttype_lv1` (
@@ -161,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `producttype_lv1` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `producttype_lv2`
+-- Table structure for table `producttype_lv2`
 --
 
 CREATE TABLE IF NOT EXISTS `producttype_lv2` (
@@ -174,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `producttype_lv2` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -185,7 +208,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `ip` varchar(255) NOT NULL,
   `lastlogtime` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `account`, `password`, `admin`, `ip`, `lastlogtime`) VALUES
+(1, 'hhq', 'cf72a4089016c88cc695c247d58908aa', 0, '123.12.12.0', '1378094389'),
+(2, 'C860', 'cf72a4089016c88cc695c247d58908aa', 0, '123.0.0.1', '1378094389');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

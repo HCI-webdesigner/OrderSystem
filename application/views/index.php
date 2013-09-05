@@ -5,6 +5,7 @@
 	<title><?php echo SITENAME ?></title>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/stylesheets/global.css');?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/stylesheets/index.css');?>">
+	<script type="text/javascript" src="<?php echo base_url('public/javascripts/md5.js');?>"></script>
 </head>
 <body>
 	<div class="board">
@@ -18,12 +19,16 @@
 		</div>
 		<div class="midpart">
 			<div class="logbox">
-				<form action="#">
+				<?php echo validation_errors(); ?>
+				<?php 
+					$attributes = array('onsubmit'=>'return trans();');
+					echo form_open('login/checkLogin', $attributes); 
+				?>
 					<p class="logbox_title">用户登录</p>
 					<ul class="form_component">
-						<label class="label" for="">用户</label><input class="inputbox" type="text" name="user">
+						<label class="label" for="">用户</label><input class="inputbox" type="text" name="user" id="user">
 						<br>
-						<label class="label" for="">密码</label><input class="inputbox" type="text" name="pwd">
+						<label class="label" for="">密码</label><input class="inputbox" type="password" name="pwd" id="pwd">
 						<br>
 						<input class="button" type="submit" value="登   录">&nbsp;&nbsp;
 						忘记密码了？快点击&nbsp;<a href="#">这里</a>&nbsp;吧！

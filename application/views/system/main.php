@@ -22,10 +22,10 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>姓名</td><td>钟煜</td>
+								<td>姓名</td><td><?php echo $account?></td>
 							</tr>
 							<tr>
-								<td>用户名</td><td>c860</td>
+								<td>用户名</td><td><?php echo $username;?></td>
 							</tr>
 							<tr>
 								<td>部门</td><td>HCI</td>
