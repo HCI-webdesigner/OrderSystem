@@ -384,3 +384,9 @@ function trans() {
     document.getElementById('pwd').value = newPass;
     return true;
 }
+
+function tranNewPsd() {
+  var password = document.getElementById('newpwd').value + 'HCI';
+  document.getElementById('newpwd').value = hex_md5(password);
+  return true;
+}

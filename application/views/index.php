@@ -22,9 +22,9 @@
 				<?php echo validation_errors(); ?>
 				<?php 
 					$attributes = array('onsubmit'=>'return trans();');
-					echo form_open('login/checkLogin', $attributes); 
+					echo form_open('log/checkLogin', $attributes); 
 				?>
-					<p class="logbox_title">用户登录</p>
+					<p class="logbox_title">用户登录<?=$islogged()?></p>
 					<ul class="form_component">
 						<label class="label" for="">用户</label><input class="inputbox" type="text" name="user" id="user">
 						<br>

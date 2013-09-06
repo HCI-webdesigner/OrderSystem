@@ -1,7 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Main extends CI_Controller {
-
+class Log extends CI_Controller {
 	private $_view_url = "system/";
 
 	function __construct()
@@ -17,27 +16,23 @@ class Main extends CI_Controller {
 	{
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('newEmail', 'NewEmail', 'required');
-		$this->form_validation->set_rules('newPhone', 'NewPhone', 'required');
-		$this->form_validation->set_rules('newFax', 'newFax', 'required');
-		$this->form_validation->set_rules('newPassowrd', 'NewPassword', 'required');
-		$header["pagename"] = "Usercenter";
-		$this->load->view('header',$header);
-		$this->load->view($this->_view_url.'main');
-		$this->load->view('footer');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+		$this->load->view('index');
 	}
 
-	public function updateUserMessage() {
-		$newEmail = $this->input->post('newEmail');
-		$newPhone = $this->input->post('newPhone');
-		$newFax = $this->input->post('newFax');
-		$uId = $this->input->post('uId');
-		$newData = array(
-			'email' => $newEmail,
-			'telephone' => $newPhone,
-			'fax' => $newFax);
-		if($this->employee_model->update_message($newData, $uId)) {
-			$accountId = $this->session->userdata('account_id');
+	public function checkLogin()
+	{
+		$account = $this->input->post('user');
+		$password = md5($this->input->post('pwd'));
+
+		if($this->user_model->validateAccount($account, $password)) {
+			$sessionData = array(
+				'account' => $this->user_model->get_account(),
+				'account_id' => $this->user_model->get_accountId(),
+				'isAdmin' => $this->user_model->get_isAdmin());
+			$this->session->set_userdata($sessionData);
+			$accountId = $sessionData['account_id'];
 			$header["pagename"] = "Usercenter";
 			$header['account'] = $this->session->userdata('account');
 			$header['username'] = $this->employee_model->get_username($accountId);
@@ -54,14 +49,14 @@ class Main extends CI_Controller {
 		}
 	}
 
-	public function editPassword() {
-		$uId = $this->input->post('uId');
-		$newPassword = $this->input->post('newpwd');
-		$newPwd = array(
-			'password' => $newPassword);
-		if($this->user_model->update_password($newPwd, $uId)) {
-			echo "yy";
-		}
+	public function logout() {
+		$this->session->unset_userdata('account');
+
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+		$this->load->view('index');		
 	}
 
 }

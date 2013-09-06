@@ -1,10 +1,17 @@
 		<div class="mainboard">
 			<div class="changepwd">
 				<p class="change_title">修改密码</p>
-				<form id="changepwdform" action="#">
+				<?php 
+					$this->load->helper('form');
+					$this->load->library('form_validation');
+					echo validation_errors();
+					$attributes = array('onsubmit'=>'return tranNewPsd();');
+					$hidden = array('uId' => $uId);
+					echo form_open('main/editPassword', $attributes, $hidden);
+				?>
 					<label class="label" for="oldpwd">旧密码</label><input class="inputbox" type="password" name="oldpwd">
 					<br>
-					<label class="label" for="newpwd">新密码</label><input class="inputbox" type="password" name="newpwd">
+					<label class="label" for="newpwd">新密码</label><input class="inputbox" type="password" name="newpwd" id="newpwd">
 					<br>
 					<label class="label" for="ensurepwd">再确认</label><input class="inputbox" type="password" name="ensurepwd">
 					<br>
@@ -13,7 +20,13 @@
 			</div>
 			<div class="changeinfo">
 				<p class="change_title">我的资料</p>
-				<form id="changeinfoform" action="#">
+				<?php 
+					$this->load->helper('form');
+					$this->load->library('form_validation');
+					echo validation_errors();
+					$hidden = array('uId' => $uId);
+					echo form_open('main/updateUserMessage', '', $hidden); 
+				?>
 					<table class="infotable">
 						<thead>
 							<tr>
@@ -28,21 +41,21 @@
 								<td>用户名</td><td><?php echo $username;?></td>
 							</tr>
 							<tr>
-								<td>部门</td><td>HCI</td>
+								<td>部门</td><td><?php echo $department;?></td>
 							</tr>
 							<tr>
-								<td>职位</td><td>后台部部长</td>
+								<td>职位</td><td><?php echo $role;?></td>
 							</tr>
 							<tr>
-								<td>E-mail</td><td><input class="inputbox" type="text" name="email"></td>
+								<td>E-mail</td><td><input class="inputbox" type="text" name="newEmail" value="<?php echo $email;?>"></td>
 							</tr>
 							<tr>
 								<td>电话</td>
-								<td><input class="inputbox" type="text"></td>
+								<td><input class="inputbox" type="text" name="newPhone" value="<?php echo $phone;?>"></td>
 							</tr>
 							<tr>
 								<td>传真</td>
-								<td><input class="inputbox" type="text"></td>
+								<td><input class="inputbox" type="text" name="newFax" value="<?php echo $fax;?>"></td>
 							</tr>
 							<tr>
 								<td style="line-height: 10px;">&nbsp;</td>
@@ -55,5 +68,13 @@
 					</table>
 				</form>
 			</div>
+		</div>
+
+		<div>
+			<?php 
+				if($islogged()) {
+					echo anchor('log/logout','注 销','');
+				}
+			?>
 		</div>
 	</div>
