@@ -19,4 +19,5 @@
 			$result_array = $query->result_array();
 			return $result_array[0]['name'];
 		}
+
 	}
