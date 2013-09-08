@@ -32,6 +32,18 @@
 			return $this->admin;
 		}
 
+		public function get_password($uId) {
+			$query = $this->db->get_where('user', array('id' => $uId));
+			$result_array = $query->result_array();
+			return $result_array[0]['password'];
+		}
+
+		public function get_md5Pwd($pwd) {
+			$pwd = md5($pwd);
+			$pwd = $pwd + 'HCI';
+			return md5($pwd);
+		}
+
 		public function get_user($account=FALSE, $password=FALSE) {
 			if($account === FALSE) {
 				$query = $this->db->get('user');

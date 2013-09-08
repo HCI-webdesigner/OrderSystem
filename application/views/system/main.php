@@ -9,12 +9,17 @@
 					$hidden = array('uId' => $uId);
 					echo form_open('main/editPassword', $attributes, $hidden);
 				?>
-					<label class="label" for="oldpwd">旧密码</label><input class="inputbox" type="password" name="oldpwd">
+					<label class="label" for="oldpwd">旧密码</label><input class="inputbox" type="password" name="oldpwd" id="oldpwd">
 					<br>
 					<label class="label" for="newpwd">新密码</label><input class="inputbox" type="password" name="newpwd" id="newpwd">
 					<br>
-					<label class="label" for="ensurepwd">再确认</label><input class="inputbox" type="password" name="ensurepwd">
+					<label class="label" for="ensurepwd">再确认</label><input class="inputbox" type="password" name="ensurepwd" id="ensurepwd">
+					
 					<br>
+					<div >
+						<input type="text" id="oldpassword" value="<?php echo $oldpassword;?>" style="display: none;">
+					</div>
+					<span id="warn"></span><br>
 					<input class="button" type="submit" value="修   改">
 				</form>
 			</div>

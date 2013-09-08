@@ -379,14 +379,36 @@ function bit_rol(num, cnt)
 }
 
 function trans() {
-    var pass = document.getElementById('pwd').value + 'HCI';
+    var pass = document.getElementById('pwd').value;
     var newPass = hex_md5(pass);
-    document.getElementById('pwd').value = newPass;
+    document.getElementById('pwd').value = newPass + 'HCI';
     return true;
 }
 
 function tranNewPsd() {
-  var password = document.getElementById('newpwd').value + 'HCI';
-  document.getElementById('newpwd').value = hex_md5(password);
-  return true;
+  var pwd = document.getElementById('newpwd').value;
+  var newpwd = hex_md5(pwd);
+  pwd = document.getElementById('ensurepwd').value;
+  var ensurepwd = hex_md5(pwd);
+  pwd = document.getElementById('oldpwd').value;
+  var oldpwd = hex_md5(pwd);
+  oldpwd = oldpwd + 'HCI';
+  oldpwd = hex_md5(oldpwd);
+  var oldPassword = document.getElementById('oldpassword').value;
+  if(oldpwd == oldPassword) {
+    if(newpwd == ensurepwd) {
+      document.getElementById('newpwd').value = newpwd + 'HCI';
+      document.getElementById('ensurepwd').value = ensurepwd + 'HCI';
+      document.getElementById('warn').innerHTML = "";
+      return true;
+    }
+    else {
+      document.getElementById('warn').innerHTML = "两次输入的密码不一致";
+      return false;
+    }
+  }
+  else {
+    document.getElementById('warn').innerHTML = "你输入的原始密码不正确";
+    return false;
+  }
 }

@@ -2,7 +2,7 @@
 
 class Main extends CI_Controller {
 
-	private $_view_url = "system/";
+	private $_view_url = "system/";	
 
 	function __construct()
 	{
@@ -20,8 +20,13 @@ class Main extends CI_Controller {
 		$this->form_validation->set_rules('newEmail', 'NewEmail', 'required');
 		$this->form_validation->set_rules('newPhone', 'NewPhone', 'required');
 		$this->form_validation->set_rules('newFax', 'newFax', 'required');
-		$this->form_validation->set_rules('newPassowrd', 'NewPassword', 'required');
+		$this->form_validation->set_rules('newpwd', 'NewPassword', 'required');
+		$uId = $this->session->userdata('account_id');
+		$oldPwd = $this->user_model->get_password($uId);
+		$pwd = $this->user_model->get_md5Pwd($this->input->post('oldpwd'));
 		$header["pagename"] = "Usercenter";
+		$header['warning'] = "";
+		$header['oldpassword'] = $pwd;
 		$this->load->view('header',$header);
 		$this->load->view($this->_view_url.'main');
 		$this->load->view('footer');
@@ -48,6 +53,7 @@ class Main extends CI_Controller {
 			$header['phone'] = $this->employee_model->get_phone($accountId);
 			$header['fax'] = $this->employee_model->get_fax($accountId);
 			$header['uId'] = $accountId;
+			$header['warning'] = "";
 			$this->load->view('header',$header);
 			$this->load->view($this->_view_url.'main',$header);
 			$this->load->view('footer');
@@ -56,11 +62,18 @@ class Main extends CI_Controller {
 
 	public function editPassword() {
 		$uId = $this->input->post('uId');
-		$newPassword = $this->input->post('newpwd');
+		$pwd = md5($this->input->post('newpwd'));
 		$newPwd = array(
-			'password' => $newPassword);
+			'password' => $pwd);
 		if($this->user_model->update_password($newPwd, $uId)) {
-			echo "yy";
+			$header["wrongPwd"] = "";
+			$this->session->unset_userdata('account');
+
+			$this->load->helper('form');
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('password', 'Password', 'required');
+
+			$this->load->view('index', $header);
 		}
 	}
 
