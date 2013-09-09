@@ -2,10 +2,11 @@
 
 class Log extends CI_Controller {
 	private $_view_url = "system/";
-
+	var $CI;
 	function __construct()
 	{
 		parent::__construct();
+		$this->CI = & get_instance();
 		$this->load->model('user_model');
 		$this->load->model('employee_model');
 		$this->load->model('department_model');
@@ -14,9 +15,9 @@ class Log extends CI_Controller {
 
 	public function index()
 	{
-		// if($islogged()) {
+		if($this->$CI->isLogged()) {
 
-		// }
+		}
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$header["wrongPwd"] = "";
