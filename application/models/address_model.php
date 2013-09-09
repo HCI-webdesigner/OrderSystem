@@ -10,7 +10,8 @@
 		}
 
 		public function get_allAddressMessage() {
-			$query = $this->db->get('address');
+			$query = $this->db->query("SELECT * FROM `address`, `address_rel_employee`, `employee` 
+				WHERE address.id=address_rel_employee.Aid AND employee.id=address_rel_employee.Eid");
 			return $query->result_array();
 		}
 

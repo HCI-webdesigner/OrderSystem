@@ -2,7 +2,7 @@
 
 class myfunc {
     var $CI;
-    function myfunc(){
+    function __construct(){
         $this->CI = & get_instance();
         //变量可以在这里定义，或者来自配置文件，也可以去数据库中查
         $func['isLogged'] = function() {

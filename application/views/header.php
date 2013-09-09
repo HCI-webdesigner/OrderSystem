@@ -44,7 +44,7 @@
 				<p class="navbutton">系统管理&nbsp;<img src="<?php echo $img_tri; ?>"></p>
 				<ul class="itemlist">
 					<a>账户信息管理</a>
-					<a>送货信息管理</a>
+					<?php echo anchor('address/','送货信息管理','');?>
 					<a>用户信息管理</a>
 					<a>审批流程管理</a>
 					<a>定制商品分类</a>

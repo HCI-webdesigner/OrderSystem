@@ -33,6 +33,7 @@ class Log extends CI_Controller {
 				'account_id' => $this->user_model->get_accountId(),
 				'isAdmin' => $this->user_model->get_isAdmin());
 			$this->session->set_userdata($sessionData);
+			$employee_id = $this->employee_model->get_employeeId();
 			$accountId = $sessionData['account_id'];
 			$header["wrongPwd"] = "";
 			$header["pagename"] = "Usercenter";
