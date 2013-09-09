@@ -31,7 +31,42 @@
 			}
 		}
 
-		public function editAddressPage($aId) {
-			
+		public function editAddress() {
+			$newDestination = $this->input->post('newDestination');
+			$newPhone = $this->input->post('newPhone');
+			$newPerson = $this->input->post('newPerson');
+			$newMailnumber = $this->input->post('newMailnumber');
+			$aId = $this->input->post('aId');
+			$newMessage = array('destination' => $newDestination,
+				'phone' => $newPhone,
+				'person' => $newPerson,
+				'mailnumber' => $newMailnumber);
+			if($this->address_model->edit_address($newMessage, $aId)) {
+				$header['pagename'] = '送货信息管理';
+				$header['allAddressMessage'] = $this->address_model->get_allAddressMessage();
+
+				$this->load->view('header',$header);
+				$this->load->view($this->_view_url.'address');
+				$this->load->view('footer');
+			}
+		}
+
+		public function addAddress() {
+			$destination = $this->input->post('destination');
+			$phone = $this->input->post('phone');
+			$person = $this->input->post('person');
+			$mailnumber = $this->input->post('mailnumber');
+			$message = array('destination' => $destination,
+				'phone' => $phone,
+				'person' => $person,
+				'mailnumber' => $mailnumber);
+			if($this->address_model->add_address($message)) {
+				$header['pagename'] = '送货信息管理';
+				$header['allAddressMessage'] = $this->address_model->get_allAddressMessage();
+
+				$this->load->view('header',$header);
+				$this->load->view($this->_view_url.'address');
+				$this->load->view('footer');
+			}
 		}
 	}
