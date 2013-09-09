@@ -55,23 +55,22 @@ class Log extends CI_Controller {
 			$this->load->view('footer');
 		}
 		else {
-			$header["wrongPwd"] = "密码不正确！！";
+			$header["wrongPwd"] = "帐号或密码不正确！！";
+
 			$this->load->helper('form');
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules('password', 'Password', 'required');
-
 			$this->load->view('index', $header);
 		}
 	}
 
 	public function logout() {
 		$header["wrongPwd"] = "";
-		$this->session->unset_userdata('account');
 
+		$this->session->unset_userdata('account');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('password', 'Password', 'required');
-
 		$this->load->view('index', $header);		
 	}
 

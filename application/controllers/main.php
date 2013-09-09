@@ -2,7 +2,7 @@
 
 class Main extends CI_Controller {
 
-	private $_view_url = "system/";	
+	private $_view_url = "system/";
 
 	function __construct()
 	{
@@ -72,7 +72,6 @@ class Main extends CI_Controller {
 			$this->load->helper('form');
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules('password', 'Password', 'required');
-
 			$this->load->view('index', $header);
 		}
 	}
