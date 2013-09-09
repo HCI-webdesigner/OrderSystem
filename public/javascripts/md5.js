@@ -394,12 +394,15 @@ function tranNewPsd() {
   var oldpwd = hex_md5(pwd);
   oldpwd = oldpwd + 'HCI';
   oldpwd = hex_md5(oldpwd);
-  var oldPassword = document.getElementById('oldpassword').value;
+  var oldPassword = document.getElementsByName('oldpassword')[0].value;
   if(oldpwd == oldPassword) {
+    // alert(oldpwd);
+    // alert(oldPassword);
     if(newpwd == ensurepwd) {
       document.getElementById('newpwd').value = newpwd + 'HCI';
       document.getElementById('ensurepwd').value = ensurepwd + 'HCI';
-      document.getElementById('warn').innerHTML = "";
+      if(document.getElementById('warn').innerHTML != null)
+        document.getElementById('warn').innerHTML = "";
       return true;
     }
     else {

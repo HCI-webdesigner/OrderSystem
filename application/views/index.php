@@ -24,7 +24,7 @@
 					$attributes = array('onsubmit'=>'return trans();');
 					echo form_open('log/checkLogin', $attributes); 
 				?>
-					<p class="logbox_title">用户登录<?=$islogged()?></p>
+					<p class="logbox_title">用户登录<?=$isLogged()?></p>
 					<p class="login_result"><?php echo $wrongPwd;?></p>
 					<ul class="form_component">
 						<label class="label" for="">用户</label><input class="inputbox" type="text" name="user" id="user">

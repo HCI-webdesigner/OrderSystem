@@ -23,10 +23,9 @@ class Main extends CI_Controller {
 		$this->form_validation->set_rules('newpwd', 'NewPassword', 'required');
 		$uId = $this->session->userdata('account_id');
 		$oldPwd = $this->user_model->get_password($uId);
-		$pwd = $this->user_model->get_md5Pwd($this->input->post('oldpwd'));
 		$header["pagename"] = "Usercenter";
 		$header['warning'] = "";
-		$header['oldpassword'] = $pwd;
+		$header['oldpassword'] = $oldPwd;
 		$this->load->view('header',$header);
 		$this->load->view($this->_view_url.'main');
 		$this->load->view('footer');
@@ -53,6 +52,7 @@ class Main extends CI_Controller {
 			$header['phone'] = $this->employee_model->get_phone($accountId);
 			$header['fax'] = $this->employee_model->get_fax($accountId);
 			$header['uId'] = $accountId;
+			$header['oldpassword'] = $this->user_model->get_password($uId);
 			$header['warning'] = "";
 			$this->load->view('header',$header);
 			$this->load->view($this->_view_url.'main',$header);
