@@ -74,7 +74,7 @@
 		<div>
 			<?php 
 				// if($islogged()) {
-				// 	echo anchor('log/logout','注 销','');
+				echo anchor('log/logout','注 销','');
 				// }
 			?>
 		</div>

@@ -45,4 +45,9 @@
 			if($this->db->update('employee', $newData, array('id' => $uId)))
 				return TRUE;
 		}
+
+		public function get_employeeId($accountId) {
+			$result_array = $this->get_messageByUid($accountId);
+			return $result_array[0]['id'];
+		}
 	}

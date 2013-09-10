@@ -10,8 +10,10 @@
 		}
 
 		public function get_allAddressMessage() {
-			$query = $this->db->query("SELECT * FROM `address`, `address_rel_employee`, `employee` 
-				WHERE address.id=address_rel_employee.Aid AND employee.id=address_rel_employee.Eid");
+			$employee_id = $this->session->userdata('employee_id');
+			$query = $this->db->query("SELECT address.* FROM `address`
+				WHERE address.id in
+				(SELECT address_rel_employee.Aid FROM `address_rel_employee` WHERE address_rel_employee.Eid='$employee_id')");
 			return $query->result_array();
 		}
 
@@ -26,7 +28,15 @@
 
 		public function add_address($addressMessage) {
 			if($this->db->insert('address', $addressMessage)) {
-				return TRUE;
+				$query = $this->db->query("select @@identity");
+				$addressRELemployee = array('Aid' => $query->result_array()[0]['@@identity'],
+					'Eid' => $this->session->userdata('employee_id'));
+				if($this->db->insert('address_rel_employee', $addressRELemployee)) {
+					return TRUE;
+				}
+				else {
+					return FALSE;
+				}
 			}
 			else {
 				return FALSE;
