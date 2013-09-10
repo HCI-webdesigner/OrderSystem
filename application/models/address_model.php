@@ -26,6 +26,16 @@
 			}
 		}
 
+		public function del($aId) {
+			if($this->db->delete('address', array('id' => $aId)) && 
+				$this->db->delete('address_rel_employee', array('Aid' => $aId))) {
+					return TRUE;
+			}
+			else {
+				return FALSE;
+			}
+		}
+
 		public function add_address($addressMessage) {
 			if($this->db->insert('address', $addressMessage)) {
 				$query = $this->db->query("select @@identity");

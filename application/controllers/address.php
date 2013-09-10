@@ -21,7 +21,7 @@
 		}
 
 		public function deleteOneAddress($aId) {
-			if($this->db->delete('address', array('id' => $aId))) {
+			if($this->address_model->del($aId)) {
 				$header['pagename'] = '送货信息管理';
 				$header['allAddressMessage'] = $this->address_model->get_allAddressMessage();
 
