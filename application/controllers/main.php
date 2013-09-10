@@ -10,6 +10,7 @@ class Main extends CI_Controller {
 		$this->load->model('user_model');
 		$this->load->model('employee_model');
 		$this->load->model('department_model');
+		$this->load->helper('url');
 		date_default_timezone_set('PRC');		//默认设置时区(修正时间与本地时间对不上问题)
 	}
 
@@ -21,11 +22,23 @@ class Main extends CI_Controller {
 		$this->form_validation->set_rules('newPhone', 'NewPhone', 'required');
 		$this->form_validation->set_rules('newFax', 'newFax', 'required');
 		$this->form_validation->set_rules('newpwd', 'NewPassword', 'required');
-		$uId = $this->session->userdata('account_id');
-		$oldPwd = $this->user_model->get_password($uId);
-		$header["pagename"] = "Usercenter";
+		
+		$accountId = $this->session->userdata('account_id');
+		$header["wrongPwd"] = "";
 		$header['warning'] = "";
-		$header['oldpassword'] = $oldPwd;
+		$header["pagename"] = "Usercenter";
+		$header['account'] = $this->session->userdata('account');
+		$header['username'] = $this->employee_model->get_username($accountId);
+		$departmentId = $this->employee_model->get_departmentId($accountId);
+		$header['department'] = $this->department_model->get_departmentname($departmentId);
+		$header['role'] = $this->employee_model->get_role($accountId);
+		$header['email'] = $this->employee_model->get_email($accountId);
+		$header['phone'] = $this->employee_model->get_phone($accountId);
+		$header['fax'] = $this->employee_model->get_fax($accountId);
+		$header['uId'] = $accountId;
+		$header['warning'] = "";
+		$header['oldpassword'] = $this->user_model->get_password($accountId);
+
 		$this->load->view('header',$header);
 		$this->load->view($this->_view_url.'main');
 		$this->load->view('footer');
@@ -41,22 +54,7 @@ class Main extends CI_Controller {
 			'telephone' => $newPhone,
 			'fax' => $newFax);
 		if($this->employee_model->update_message($newData, $uId)) {
-			$accountId = $this->session->userdata('account_id');
-			$header["pagename"] = "Usercenter";
-			$header['account'] = $this->session->userdata('account');
-			$header['username'] = $this->employee_model->get_username($accountId);
-			$departmentId = $this->employee_model->get_departmentId($accountId);
-			$header['department'] = $this->department_model->get_departmentname($departmentId);
-			$header['role'] = $this->employee_model->get_role($accountId);
-			$header['email'] = $this->employee_model->get_email($accountId);
-			$header['phone'] = $this->employee_model->get_phone($accountId);
-			$header['fax'] = $this->employee_model->get_fax($accountId);
-			$header['uId'] = $accountId;
-			$header['oldpassword'] = $this->user_model->get_password($uId);
-			$header['warning'] = "";
-			$this->load->view('header',$header);
-			$this->load->view($this->_view_url.'main',$header);
-			$this->load->view('footer');
+			redirect('/main/', 'refresh');
 		}
 	}
 
@@ -69,10 +67,7 @@ class Main extends CI_Controller {
 			$header["wrongPwd"] = "";
 			$this->session->unset_userdata('account');
 
-			$this->load->helper('form');
-			$this->load->library('form_validation');
-			$this->form_validation->set_rules('password', 'Password', 'required');
-			$this->load->view('index', $header);
+			redirect('/', 'refresh');
 		}
 	}
 

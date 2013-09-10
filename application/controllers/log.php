@@ -9,6 +9,7 @@ class Log extends CI_Controller {
 		$this->load->model('user_model');
 		$this->load->model('employee_model');
 		$this->load->model('department_model');
+		$this->load->helper('url');
 		date_default_timezone_set('PRC');		//默认设置时区(修正时间与本地时间对不上问题)
 	}
 
@@ -35,23 +36,9 @@ class Log extends CI_Controller {
 			$employee_id = $this->employee_model->get_employeeId($sessionData['account_id']);
 			$sessionData['employee_id'] = $employee_id;
 			$this->session->set_userdata($sessionData);
-			$accountId = $this->session->userdata('account_id');
-			$header["wrongPwd"] = "";
-			$header["pagename"] = "Usercenter";
-			$header['account'] = $this->session->userdata('account');
-			$header['username'] = $this->employee_model->get_username($accountId);
-			$departmentId = $this->employee_model->get_departmentId($accountId);
-			$header['department'] = $this->department_model->get_departmentname($departmentId);
-			$header['role'] = $this->employee_model->get_role($accountId);
-			$header['email'] = $this->employee_model->get_email($accountId);
-			$header['phone'] = $this->employee_model->get_phone($accountId);
-			$header['fax'] = $this->employee_model->get_fax($accountId);
-			$header['uId'] = $accountId;
-			$header['warning'] = "";
-			$header['oldpassword'] = $this->user_model->get_password($accountId);
-			$this->load->view('header',$header);
-			$this->load->view($this->_view_url.'main',$header);
-			$this->load->view('footer');
+			
+			
+			redirect('/main/', 'refresh');
 		}
 		else {
 			$header["wrongPwd"] = "帐号或密码不正确！！";
@@ -64,13 +51,9 @@ class Log extends CI_Controller {
 	}
 
 	public function logout() {
-		$header["wrongPwd"] = "";
-
 		$this->session->unset_userdata('account');
-		$this->load->helper('form');
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('password', 'Password', 'required');
-		$this->load->view('index', $header);		
+
+		redirect('/', 'refresh');	
 	}
 
 }
