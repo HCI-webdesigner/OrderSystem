@@ -9,12 +9,21 @@
 			$this->load->database();
 		}
 
-		public function get_allAddressMessage() {
+		public function get_allAddressMessage($pageNum, $pagesize) {
 			$employee_id = $this->session->userdata('employee_id');
-			$query = $this->db->query("SELECT address.* FROM `address`
-				WHERE address.id in
-				(SELECT address_rel_employee.Aid FROM `address_rel_employee` WHERE address_rel_employee.Eid='$employee_id')");
-			return $query->result_array();
+			if($pageNum == null) {
+				$query = $this->db->query("SELECT address.* FROM `address`
+					WHERE address.id in
+					(SELECT address_rel_employee.Aid FROM `address_rel_employee` WHERE address_rel_employee.Eid='$employee_id') LIMIT $pagesize");
+				return $query->result_array();
+			}
+			else {
+				$offset = ($pageNum-1)*$pagesize;
+				$query = $this->db->query("SELECT address.* FROM `address`
+					WHERE address.id in
+					(SELECT address_rel_employee.Aid FROM `address_rel_employee` WHERE address_rel_employee.Eid='$employee_id') LIMIT $offset, $pagesize");
+				return $query->result_array();
+			}
 		}
 
 		public function edit_address($newMessage, $aId) {
@@ -51,6 +60,18 @@
 			else {
 				return FALSE;
 			}
+		}
+
+		public function get_addressnum() {
+			$employee_id = $this->session->userdata('employee_id');
+			$query = $this->db->query("SELECT address.* FROM `address`
+				WHERE address.id in
+				(SELECT address_rel_employee.Aid FROM `address_rel_employee` WHERE address_rel_employee.Eid='$employee_id')");
+			return $query->num_rows();
+		}
+
+		public function get_totalPages($_pagesize) {
+			return round($this->get_addressnum()/$_pagesize + 0.4);
 		}
 
 	}

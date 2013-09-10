@@ -14,7 +14,7 @@
 			<td align="center"><?=$row['mailnumber']?></td>
 			<td align="center">
 			<?php
-				echo anchor('address/deleteOneAddress/'."$row[id]",'删除','');
+				echo anchor('address/deleteOneAddress/'.$this->uri->segment(3)."/$row[id]",'删除','');
 			?>
 			 | <input type="button" name="edit" value="修改" onclick="displayEditPage(<?=$row['id']?>);">
 			 
@@ -25,7 +25,7 @@
 					$this->load->helper('form');
 					$this->load->library('form_validation');
 					echo validation_errors();
-					$hidden = array('aId' => $row['id']);
+					$hidden = array('aId' => $row['id'], 'pageNum' => $this->uri->segment(3));
 					echo form_open('address/editAddress', '', $hidden);
 				?>
 				<br>
@@ -41,13 +41,17 @@
 		</tr>
 	<?php endforeach?>
 	</table>
+	<?=$page?>
+	共 <?=$totalPages?> 页
+	<br>
 	<input type="button" name="addAddressButton" value="添 加" onclick="displayAddAddressPage();"></a> 
 	<div style="display:none" id="addAddressForm">
 		<?php 
 			$this->load->helper('form');
 			$this->load->library('form_validation');
 			echo validation_errors();
-			echo form_open('address/addAddress');
+			$hidden = array('pageNum' => $this->uri->segment(3));
+			echo form_open('address/addAddress','' , $hidden);
 		?>
 		<p>新增送货地址</p>
 		<label class="label" for="destination">收货地址</label> <input type="text" name="destination"><br>
