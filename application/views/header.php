@@ -18,7 +18,7 @@
 			<div id="p0" class="part">
 				<p class="navbutton">商品选购&nbsp;<img src="<?php echo $img_tri; ?>"></p>
 				<ul class="itemlist">
-					<a>商品分类</a>
+					<?php echo anchor('/product/', '商品分类');?>
 					<a>常购商品</a>
 				</ul>
 			</div>
