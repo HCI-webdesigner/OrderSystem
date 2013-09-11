@@ -52,4 +52,7 @@
 					<a>定制服务设置</a>
 				</ul>
 			</div>
+			<div id="p5" class="part">
+				<p class="navbutton"><?php echo anchor('/log/logout', '退出登录');?></p>
+			</div>
 		</div>

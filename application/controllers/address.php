@@ -15,6 +15,9 @@
 		}
 
 		public function index() {
+			if(!$this->myfunc->fn['isLogged']()) {
+				redirect('/', 'refresh');
+			}
 			$this->page();
 		}
 

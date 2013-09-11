@@ -10,6 +10,10 @@
 		}
 
 		public function index() {
+			if(!$this->myfunc->fn['isLogged']()) {
+				redirect('/', 'refresh');
+			}
+
 			$producttype1 = $this->product_model->get_lv1AllNames();
 			$producttype2 = array();
 			foreach ($producttype1 as $row) {

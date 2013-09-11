@@ -16,6 +16,9 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
+		if(!$this->myfunc->fn['isLogged']()) {
+			redirect('/', 'refresh');
+		}
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('newEmail', 'NewEmail', 'required');

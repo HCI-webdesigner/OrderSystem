@@ -15,7 +15,9 @@ class Log extends CI_Controller {
 
 	public function index()
 	{
-		echo $this->myfunc->fn['isLogged']();
+		if($this->myfunc->fn['isLogged']()) {
+			redirect('/main/', 'refresh');
+		}
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$header["wrongPwd"] = "";

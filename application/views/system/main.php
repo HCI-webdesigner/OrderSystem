@@ -70,12 +70,4 @@
 				</form>
 			</div>
 		</div>
-
-		<div>
-			<?php 
-				// if($islogged()) {
-				echo anchor('log/logout','注 销','');
-				// }
-			?>
-		</div>
 	</div>
