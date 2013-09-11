@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="<?php echo base_url('public/javascripts/jquery-1.7.2.min.js');?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('public/javascripts/md5.js');?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('public/javascripts/address.js');?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('public/javascripts/product.js');?>"></script>
 </head>
 <body>
 	<div class="body">
