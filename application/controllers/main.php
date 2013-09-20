@@ -23,7 +23,7 @@ class Main extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('newEmail', 'NewEmail', 'required');
 		$this->form_validation->set_rules('newPhone', 'NewPhone', 'required');
-		$this->form_validation->set_rules('newFax', 'newFax', 'required');
+		$this->form_validation->set_rules('newFax', 'NewFax', 'required');
 		$this->form_validation->set_rules('newpwd', 'NewPassword', 'required');
 		
 		$accountId = $this->session->userdata('account_id');

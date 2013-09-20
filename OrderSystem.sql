@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 11, 2013 at 07:12 PM
+-- Generation Time: Sep 20, 2013 at 11:38 PM
 -- Server version: 5.5.31-0ubuntu0.13.04.1
--- PHP Version: 5.4.9-4ubuntu2.2
+-- PHP Version: 5.4.9-4ubuntu2.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -209,7 +209,42 @@ CREATE TABLE IF NOT EXISTS `products` (
   `price` varchar(255) NOT NULL,
   `unit` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `type`, `PSN`, `picture`, `name`, `price`, `unit`) VALUES
+(1, 1, '123456', 'A4pic.jpg', 'A4纸', '10.00$', '1'),
+(2, 1, '123456', 'caogao.jpg', '草稿纸', '10.00$', '1'),
+(3, 1, '123456', 'form.jpg', '表格纸', '10.00$', '1'),
+(4, 2, '123457', 'tip.jpg', '便利贴', '7.00$', '1'),
+(5, 2, '123458', 'smallbook.jpg', '备忘录本', '5.00$', '1'),
+(6, 3, '123459', 'boben.jpg', '薄本', '8.00$', '1'),
+(7, 3, '123460', 'xinfen.jpg', '信封', '8.00$', '1'),
+(8, 4, '123461', 'pen.jpg', '笔', '1.00$', '1'),
+(9, 4, '123461', 'maopen.jpg', '毛笔', '1.00$', '1'),
+(10, 4, '123463', 'yuanzhu.jpg', '圆珠笔', '2.00$', '1'),
+(11, 5, '123463', 'upan.jpg', '金士顿U盘', '20.00$', '1'),
+(12, 5, '123464', 'upan2.jpg', '移动硬盘', '100.00$', '1'),
+(13, 6, '123465', 'bitong.jpg', '笔筒', '10.00$', '1'),
+(14, 6, '123466', 'mabu.jpg', '抹布', '10.00$', '1'),
+(15, 7, '123467', 'mohe.jpg', '喷墨打印机墨盒', '20.00$', '1'),
+(16, 8, '123468', 'xigu.jpg', '激光打印机硒鼓', '30.00$', '1'),
+(17, 9, '123469', 'pmohe.jpg', '喷墨传真机墨盒', '30.00$', '1'),
+(18, 10, '123470', 'jxigu.jpg', '激光传真机硒鼓', '30.00$', '1'),
+(19, 11, '123471', 'mofen.jpg', '复印机墨粉', '30.00$', '1'),
+(20, 12, '123472', 'sedai.jpg', '色带', '30.00$', '1'),
+(21, 13, '123473', 'yingpan.jpg', '硬盘', '80.00$', '1'),
+(22, 14, '123474', 'jiaoquan.jpg', '胶圈', '80.00$', '1'),
+(23, 14, '123475', 'suizhi.jpg', '碎纸机', '80.00$', '1'),
+(24, 15, '123476', 'yaoshi.jpg', '钥匙', '8.00$', '1'),
+(25, 15, '123477', 'dianchaoji.jpg', '点钞机', '80.00$', '1'),
+(26, 16, '123478', 'wannengchongdian.jpg', '万能充电器', '8.00$', '1'),
+(27, 16, '123479', 'zuoji.jpg', '电话座机', '8.00$', '1'),
+(28, 6, '111111', 'ruler.jpg', '得力(deli)有机直尺', '$1.00', '2'),
+(29, 6, '112233', 'rl.jpg', '得力直尺#123', '$10.00', '1');
 
 -- --------------------------------------------------------
 

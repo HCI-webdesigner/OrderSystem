@@ -1,4 +1,14 @@
-	<?php echo anchor('/product/allProductNames/', '显示所有产品');?>
+	<div>
+	<?php echo validation_errors(); ?>
+	<?php 
+		echo form_open('product/searchProducts'); 
+	?>
+	<input type="text" name="searchkey" id="search">
+	<input type="submit" name="searchSub" value="搜索">
+	</form>
+	</div>
+
+	<?php echo anchor('/product/allProducts/', '显示所有产品');?>
 
 	<?php foreach($producttype1 as $productType1Row):?>
 		<ul class="">
