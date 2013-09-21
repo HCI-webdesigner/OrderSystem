@@ -35,11 +35,6 @@
 				$query = $this->db->get();
 				$results = $query->result_array();
 			}
-
-			// foreach ($results as $rows) {
-			// 	preg_replace("/$rows[name]/i", "<font color=red><b>\\1</b>
-			// 		</font>", $key);
-			// }
 			return $results;
 		}
 

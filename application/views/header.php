@@ -5,6 +5,7 @@
 	<title><?php echo $pagename . ' - ' . SITENAME ?></title>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/stylesheets/global.css');?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/stylesheets/main.css');?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('public/stylesheets/product.css');?>">
 	<script type="text/javascript" src="<?php echo base_url('public/javascripts/jquery-1.7.2.min.js');?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('public/javascripts/md5.js');?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('public/javascripts/address.js');?>"></script>
