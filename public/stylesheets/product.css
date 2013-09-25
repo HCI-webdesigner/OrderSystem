@@ -1,6 +1,10 @@
+@charset "utf-8";
 td {
 	text-align: center;
 }
+
+ul{list-style-type:none; margin:0;width:100%; }
+ul li{ width:120px; float:left;}
 
 .product_img{
 	 width: 100;
@@ -13,4 +17,43 @@ td {
 
 .name {
 	color: blue;
+}
+
+.pagetitle {
+	color: red;
+	font-size: 20px;
+}
+
+.product-list {
+	float: right;
+	width: 750px;
+}
+
+.line {
+	height:1px;
+	font-weight: bolder;
+	color: red;
+}
+
+.viewproduct {
+	color: blue;
+	width: 200px;
+	height: 10px;
+	font-size: 20px;
+	float: left;
+}
+
+.search {
+	width: 200px;
+	float: left;
+	height: 50px;
+}
+
+.producttypelv1 {
+	float: left;
+}
+
+.producttypelv2 {
+	font-size: 15px;
+	width: 45px;
 }

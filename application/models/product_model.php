@@ -1,7 +1,7 @@
 <?php
 	
 	class Product_model extends CI_Model {
-		
+
 		public function __construct() {
 			$this->load->database();
 		}
@@ -22,9 +22,22 @@
 			return $result[0]['name'];
 		}
 
-		public function get_allProducts() {
-			$query = $this->db->get('products');
-			return $query->result_array();
+		public function get_allProducts($pageNum, $pagesize) {
+			if($pageNum == null) {
+				$this->db->select('products.*');
+				$this->db->from('products');
+				$this->db->limit($pagesize);
+				$query = $this->db->get();
+				return $query->result_array();
+			}
+			else {
+				$offset = ($pageNum-1)*$pagesize;
+				$this->db->select('products.*');
+				$this->db->from('products');
+				$this->db->limit($pagesize ,$offset);
+				$query = $this->db->get();
+				return $query->result_array();
+			}
 		}
 
 		public function search_products($keyWordArray) {
@@ -36,6 +49,15 @@
 				$results = $query->result_array();
 			}
 			return $results;
+		}
+
+		public function get_productnum() {
+			$query = $this->db->get('products');
+			return $query->num_rows();
+		}
+
+		public function get_totalPages($pagesize) {
+			return round($this->get_productnum()/$pagesize + 0.4);
 		}
 
 	}
